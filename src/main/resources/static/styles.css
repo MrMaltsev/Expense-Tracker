@@ -1,0 +1,41 @@
+/* styles.css */
+textarea {
+    resize: none; /* Отключает изменение размера */
+    width: 40%;
+    height: 150px; /* Высота */
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    width: 300px; /* Ширина текстового поля */
+    height: 40px; /* Высота */
+    padding: 8px;
+    font-size: 16px;
+}
+label {
+    font-family: 'Arial', sans-serif; /* Используем красивый шрифт */
+    font-size: 18px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    color: #333; /* Цвет текста (тёмно-серый) */
+    margin-bottom: 8px; /* Отступ снизу для разделения от поля ввода */
+    display: block; /* Размещаем надпись как блочный элемент */
+}
+input[type="number"] {
+    border-color: #007BFF;
+    outline: none;
+}
+select {
+    width: 200px; /* Ширина выпадающего меню */
+    height: 40px; /* Высота */
+    padding: 8px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 4px; /* Скругление углов */
+    box-sizing: border-box; /* Учитывает padding и border в ширине */
+}
+
+select:focus {
+    border-color: #007BFF; /* Цвет границы при фокусе */
+    outline: none; /* Убирает стандартное выделение */
+}
