@@ -1,41 +1,245 @@
-/* styles.css */
+/* Общие стили для страницы */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+/* Контейнер для всей страницы */
+.page-container {
+    max-width: 1000px; /* Ограничиваем ширину, чтобы соответствовать красной линии */
+    margin: 40px auto; /* Центрируем с отступами по бокам */
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #007BFF;
+}
+
+/* Контейнер для таблицы и блока с общей суммой */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px; /* Отступ между таблицей и блоком */
+}
+
+/* Стили для таблицы */
+.expense-table {
+    width: 70%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.expense-table th, .expense-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.expense-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #555;
+}
+
+.expense-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.expense-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Стили для блока "Общие траты" */
+.total-expenses {
+    width: 30%;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.total-expenses h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.total-expenses p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007BFF;
+    margin: 0;
+}
+
+/* Стили для группы кнопок */
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+/* Стили для кнопок */
+button {
+    padding: 12px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Стили для формы (для страницы добавления расходов) */
+.expense-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group textarea,
+.form-group input,
+.form-group select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group textarea:focus,
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 120px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.back-button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Твои существующие стили для элементов формы */
 textarea {
-    resize: none; /* Отключает изменение размера */
+    resize: none;
     width: 40%;
-    height: 150px; /* Высота */
+    height: 150px;
     padding: 10px;
     font-size: 16px;
 }
 
 input[type="text"] {
-    width: 300px; /* Ширина текстового поля */
-    height: 40px; /* Высота */
+    width: 300px;
+    height: 40px;
     padding: 8px;
     font-size: 16px;
 }
+
 label {
-    font-family: 'Arial', sans-serif; /* Используем красивый шрифт */
-    font-size: 18px; /* Размер текста */
-    font-weight: bold; /* Жирный текст */
-    color: #333; /* Цвет текста (тёмно-серый) */
-    margin-bottom: 8px; /* Отступ снизу для разделения от поля ввода */
-    display: block; /* Размещаем надпись как блочный элемент */
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
 }
+
 input[type="number"] {
     border-color: #007BFF;
     outline: none;
 }
+
 select {
-    width: 200px; /* Ширина выпадающего меню */
-    height: 40px; /* Высота */
-    padding: 8px; /* Внутренние отступы */
-    font-size: 16px; /* Размер шрифта */
-    border: 1px solid #ccc; /* Граница */
-    border-radius: 4px; /* Скругление углов */
-    box-sizing: border-box; /* Учитывает padding и border в ширине */
+    width: 200px;
+    height: 40px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 select:focus {
-    border-color: #007BFF; /* Цвет границы при фокусе */
-    outline: none; /* Убирает стандартное выделение */
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .page-container {
+        margin: 20px;
+        padding: 15px;
+    }
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .expense-table, .total-expenses {
+        width: 100%;
+    }
 }

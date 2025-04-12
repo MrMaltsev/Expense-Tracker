@@ -23,6 +23,7 @@ public class ExpenseService {
     }
 
     public BigDecimal getTotalAmount() {
+        return expenseRepository.getTotalAmount();
     }
 
 }

@@ -1,5 +1,6 @@
 package projects.expense_tracker;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -18,8 +19,10 @@ public class ExpenseController {
     @GetMapping("/home")
     public String homePage(Model model) {
         List<Expense> expenses = service.getAllExpenses();
+        BigDecimal totalAmount = service.getTotalAmount();
 
         model.addAttribute("expenses", expenses);
+        model.addAttribute("totalAmount", totalAmount);
 
         return "home";
     }
@@ -40,4 +43,5 @@ public class ExpenseController {
         service.addExpense(expense);
         return "redirect:/home";
     }
+
 }
