@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ExpenseController {
@@ -44,4 +42,27 @@ public class ExpenseController {
         return "redirect:/home";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteExpense(@PathVariable Long id) {
+        service.deleteExpense(id);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showExpenseForm(@PathVariable Long id, Model model) {
+        Expense expense = service.getOneExpense(id);
+
+        model.addAttribute("expense", expense);
+        model.addAttribute("categories", Expense.Category.values());
+
+        return "edit";
+    }
+
+    @PostMapping("/update/{id}")
+        public String updateExpense(@PathVariable Long id, @ModelAttribute Expense newExpense) {
+            service.updateExpense(id, newExpense);
+            return "redirect:/home";
+    }
+
 }
+

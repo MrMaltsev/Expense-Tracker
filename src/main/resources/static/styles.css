@@ -13,8 +13,8 @@ h2, h3 {
 
 /* Контейнер для всей страницы */
 .page-container {
-    max-width: 1000px; /* Ограничиваем ширину, чтобы соответствовать красной линии */
-    margin: 40px auto; /* Центрируем с отступами по бокам */
+    max-width: 1000px;
+    margin: 40px auto;
     padding: 30px;
     background-color: #fff;
     border-radius: 15px;
@@ -33,7 +33,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 30px; /* Отступ между таблицей и блоком */
+    gap: 30px;
 }
 
 /* Стили для таблицы */
@@ -66,6 +66,55 @@ h2 {
 
 .expense-table tbody tr:hover {
     background-color: #e9ecef;
+}
+
+/* Стили для столбца Actions */
+.expense-table th:last-child,
+.expense-table td:last-child {
+    text-align: center;
+    width: 150px; /* Увеличиваем ширину для двух кнопок */
+}
+
+/* Контейнер для кнопок в столбце Actions */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Стили для кнопки "Изменить" */
+.edit-button {
+    padding: 8px 12px;
+    background-color: #28a745; /* Зелёный цвет для редактирования */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Стили для кнопки "Удалить" */
+.delete-button {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
 }
 
 /* Стили для блока "Общие траты" */
@@ -115,7 +164,7 @@ button:hover {
     transform: translateY(-2px);
 }
 
-/* Стили для формы (для страницы добавления расходов) */
+/* Стили для формы (для страницы добавления и редактирования расходов) */
 .expense-form {
     display: flex;
     flex-direction: column;
@@ -241,5 +290,13 @@ select:focus {
     }
     .expense-table, .total-expenses {
         width: 100%;
+    }
+    .expense-table th:last-child,
+    .expense-table td:last-child {
+        width: auto;
+    }
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
     }
 }

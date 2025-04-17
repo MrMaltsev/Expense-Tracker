@@ -16,6 +16,7 @@
                 <th>Description</th>
                 <th>Category</th>
                 <th>Amount</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,14 @@
                 <td th:text="${expense.description}"></td>
                 <td th:text="${expense.category}"></td>
                 <td th:text="${expense.amount}"></td>
+                <td>
+                    <div class="action-buttons">
+                        <a th:href="@{/update/{id}(id=${expense.id})}" class="edit-button">Изменить</a>
+                        <form th:action="@{/delete/{id}(id=${expense.id})}" method="post">
+                            <button type="submit" class="delete-button">Удалить</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
