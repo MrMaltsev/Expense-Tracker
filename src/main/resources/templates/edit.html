@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Expense</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-container">
+    <h2>Редактировать трату</h2>
+
+    <form th:action="@{/update/{id}(id=${expense.id})}" method="post" class="expense-form">
+        <div class="form-group">
+            <label for="description">Описание траты:</label>
+            <textarea id="description" name="description" th:text="${expense.description}" placeholder="Введите описание траты" rows="5" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Количество потраченных денег:</label>
+            <input id="amount" type="number" name="amount" step="0.01" min="0" th:value="${expense.amount}" placeholder="Введите сумму (в руб)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Категория траты:</label>
+            <select id="category" name="category" required>
+                <option th:each="category : ${categories}"
+                        th:value="${category}"
+                        th:text="${category}"
+                        th:selected="${expense.category == category}"></option>
+            </select>
+        </div>
+
+
+        <div class="form-actions">
+            <button type="submit">Сохранить изменения</button>
+            <a href="/home" class="back-button">Назад</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
