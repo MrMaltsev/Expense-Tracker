@@ -1,5 +1,7 @@
 package projects.expense_tracker;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,17 +13,26 @@ import java.util.Optional;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
+    private final UserRepository userRepository;
 
-    ExpenseService(ExpenseRepository expenseRepository) {
+    ExpenseService(ExpenseRepository expenseRepository, UserRepository userRepository) {
         this.expenseRepository = expenseRepository;
+        this.userRepository = userRepository;
     }
 
     public Expense addExpense(Expense expense) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userRepository.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException(("User not found")));
+
+        expense.setUser(user);
+
         return expenseRepository.save(expense);
     }
 
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+    public List<Expense> getAllUserExpenses(User user) {
+        return expenseRepository.findAllByUser(user);
     }
 
     public Expense getOneExpense(Long id) {
@@ -29,8 +40,8 @@ public class ExpenseService {
                 .orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
-    public BigDecimal getTotalAmount() {
-        return expenseRepository.getTotalAmount();
+    public BigDecimal getTotalUserAmount(User user) {
+        return expenseRepository.getTotalUserAmount(user);
     }
 
     public void deleteExpense(Long id) {

@@ -3,6 +3,8 @@ package projects.expense_tracker;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
@@ -12,14 +14,25 @@ import org.springframework.web.bind.annotation.*;
 public class ExpenseController {
 
     private final ExpenseService service;
-    ExpenseController(ExpenseService service) {this.service = service;}
+    private final UserRepository userRepository;
+
+    ExpenseController(ExpenseService service, UserRepository userRepository) {
+        this.service = service;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/home")
     public String homePage(Model model) {
-        List<Expense> expenses = service.getAllExpenses();
-        BigDecimal totalAmount = service.getTotalAmount();
 
-        model.addAttribute("expenses", expenses);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userRepository.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        BigDecimal totalAmount = service.getTotalUserAmount(user);
+        List<Expense> userExpenses = service.getAllUserExpenses(user);
+
+        model.addAttribute("expenses", userExpenses);
         model.addAttribute("totalAmount", totalAmount);
 
         return "home";

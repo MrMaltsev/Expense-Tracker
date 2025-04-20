@@ -18,6 +18,10 @@ public class Expense {
     private String description;
     private BigDecimal amount;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     private LocalDate date;
 
     private Category category;
